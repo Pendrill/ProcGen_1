@@ -16,6 +16,8 @@ public class PathFinder : MonoBehaviour {
 	int rand_Pathmakers_Num;
 	float rand_turn_1;
 	float rand_turn_2;
+
+	public Transform[] BoardPrefabs;
 	// Use this for initialization
 	void Start () {
 		Total_Num_Of_Tiles = totalTilesZero;
@@ -29,7 +31,7 @@ public class PathFinder : MonoBehaviour {
 	void Update () {
 		totalTilesZero = Total_Num_Of_Tiles;
 		totalPathsZero = Total_Num_Of_Pathmakers;
-		if (counter <= 50 && Total_Num_Of_Tiles < 1000 ) {
+		if (counter <= 50 && Total_Num_Of_Tiles < 750 ) {
 			float Random_Num = Random.Range (0.0f, 1.0f);
 			if (Random_Num <= rand_turn_1) {
 				transform.Rotate (new Vector3 (0, 90f, 0));
@@ -39,7 +41,7 @@ public class PathFinder : MonoBehaviour {
 				Instantiate (Pathmaker_Sphere_Prefab, transform.position, Quaternion.identity);
 				Total_Num_Of_Pathmakers += 1;
 			}
-			Instantiate (Floor_Prefab, transform.position, Quaternion.identity);
+			Instantiate (BoardPrefabs[Random.Range(0,4)], transform.position, Quaternion.identity);
 			transform.position += transform.forward * 22.3f;
 			counter += 1;
 			Total_Num_Of_Tiles += 1;
